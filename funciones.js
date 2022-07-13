@@ -72,26 +72,8 @@ function processFile(file) {
         });
 
         fileReader.readAsDataURL(file)
-        uploadFile(file, id);
     } else {
         alert("no es un archivo compatible");
     }
 
-}
-function uploadFile(file,id) {
-    const formdata = new FormData();
-    formdata.append("file", file);
-    try {
-        const response = await fetch('http://localhost:3000/upload', {
-            method: "POST",
-            body: formdata,
-        })
-
-        const responseText = await response.text;
-
-        document.querySelector(`#${id} .status-text`).innerHTML = `<span class = "success">Archivo subido correctamente</span>`
-
-    } catch {
-        document.querySelector(`#${id} .status-text`).innerHTML = `<span class = "failure">el archivo no se pudo subir</span>`;
-    }
 }
